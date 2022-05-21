@@ -23,3 +23,7 @@ Route::get('signup', function () {
 });
 
 Route::post('signup',[AddUser::class,'add']);
+
+Route::get('profile',function(){
+    return view('pages.profile');
+});
