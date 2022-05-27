@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AddUser;
+use App\Http\Controllers\UserLogin;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ Route::post('signup',[AddUser::class,'add']);
 Route::get('profile',function(){
     return view('pages.profile');
 });
+
+Route::post('login',[UserLogin::class,'login']);
