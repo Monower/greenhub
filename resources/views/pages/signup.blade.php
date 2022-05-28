@@ -44,11 +44,11 @@
                 @endif
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label mt-4">User Name</label>
-                    <input type="text" class="form-control" name="user_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Desired User name">
+                    <input type="text" class="form-control" name="user_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Desired User name" value="{{old('user_name')}}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
-                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your email">
+                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your email" value="{{old('email')}}">
                 </div>
                 <div class="form-group pb-2">
                     <label for="exampleInputPassword1" class="form-label mt-4">Password</label>

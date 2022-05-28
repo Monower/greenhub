@@ -35,13 +35,18 @@
               @csrf
                 <fieldset>
                     <legend>Login</legend>
+                    @if ($errors->any())
+                      @foreach($errors->all() as $error)
+                          <p class="text-danger">{{$error}}</p>
+                      @endforeach
+                    @endif
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{old('email')}}">
                     </div>
                     <div class="form-group pb-2">
                         <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" value="{{old('password')}}">
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </fieldset>

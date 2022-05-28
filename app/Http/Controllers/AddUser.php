@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class AddUser extends Controller
 {
     public function add(Request $r){
-        $r->validate([
+        $validate=$r->validate([
             'user_name'=>'required|max:6',
             'email'=>'required|email|unique:users,email',
             'password'=>'required|min:8',
@@ -19,7 +19,7 @@ class AddUser extends Controller
 /*         if($errors->fails()){
             return redirect()->back()->withErrors($errors->errors);
         }else{ */
-            $user=new User;
+/*             $user=new User;
 
             $user->user_name=$r->user_name;
             $user->email=$r->email;
@@ -28,7 +28,22 @@ class AddUser extends Controller
             $user->save();
 
             $r->session()->put('user',$r->user_name);
-            return redirect('profile');
+            return redirect('profile'); */
 /*         } */
+
+            if(Auth::attempt($validate)){
+                    $user=new User;
+
+                    $user->user_name=$r->user_name;
+                    $user->email=$r->email;
+                    $user->password=Hash::make($r->password);
+
+                    $user->save();
+
+                    $r->session()->put('user',$r->user_name);
+                    return redirect('profile');
+            }else{
+                return redirect()->back()->withErrors($validate)->withInput(Input::all());
+            }
     }
 }
