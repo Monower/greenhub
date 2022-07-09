@@ -23,7 +23,9 @@
                 </form>
             </div>
 
-            <a style="text-decoration: none; color:aliceblue" href="#">Message_Box</a>
+            <a class="btn btn-sm btn-primary" href="#">Messages</a>
+            <a class="btn btn-sm btn-primary" href="#">Bookmarks</a>
+            <a class="btn btn-sm btn-primary" href="#">Notices</a>
             
             <ul class="navbar-nav me-auto">
                 <li class="nav-item dropdown">

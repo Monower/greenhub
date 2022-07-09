@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-group pb-2">
                     <label for="exampleInputPassword1" class="form-label mt-4">Retype Password</label>
-                    <input type="password" class="form-control" name="retype_password" id="exampleInputPassword1" placeholder="Re-enter Password">
+                    <input type="password" class="form-control" name="password_confirmation" id="exampleInputPassword1" placeholder="Re-enter Password">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </fieldset>

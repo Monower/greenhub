@@ -5,45 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class AddUser extends Controller
 {
-    public function add(Request $r){
-        $validate=$r->validate([
+    public function add(Request $request){
+        $validate=$request->validate([
             'user_name'=>'required|max:6',
             'email'=>'required|email|unique:users,email',
-            'password'=>'required|min:8',
-            'retype_password'=>'same:password'
+            'password'=>'required|min:8|confirmed'
+            
         ]);
 
-/*         if($errors->fails()){
-            return redirect()->back()->withErrors($errors->errors);
-        }else{ */
-/*             $user=new User;
+            if($validate){
+                User::create([
+                    'user_name'=>$request->user_name,
+                    'email'=>$request->email,
+                    'password'=>Hash::make($request->password)
+                ]);
 
-            $user->user_name=$r->user_name;
-            $user->email=$r->email;
-            $user->password=Hash::make($r->password);
+                $request->session()->put('user',$request->user_name);
 
-            $user->save();
 
-            $r->session()->put('user',$r->user_name);
-            return redirect('profile'); */
-/*         } */
-
-            if(Auth::attempt($validate)){
-                    $user=new User;
-
-                    $user->user_name=$r->user_name;
-                    $user->email=$r->email;
-                    $user->password=Hash::make($r->password);
-
-                    $user->save();
-
-                    $r->session()->put('user',$r->user_name);
-                    return redirect('profile');
+                return redirect('profile');
             }else{
-                return redirect()->back()->withErrors($validate)->withInput(Input::all());
+                return redirect()->back()->withErrors($validate)->withInput($request->all());
             }
     }
 }
