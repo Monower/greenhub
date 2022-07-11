@@ -11,7 +11,7 @@ class AddUser extends Controller
 {
     public function add(Request $request){
         $validate=$request->validate([
-            'user_name'=>'required|max:6',
+            'user_name'=>'required|unique:users,user_name',
             'email'=>'required|email|unique:users,email',
             'password'=>'required|min:8|confirmed'
             

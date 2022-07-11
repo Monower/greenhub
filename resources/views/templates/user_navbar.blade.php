@@ -32,6 +32,7 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Options</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Following</a>
                     <a class="dropdown-item" href="#">Logout</a>
                 </div>
                 </li>

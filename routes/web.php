@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Middleware\Authenticate;
 use App\Http\Controllers\AddUser;
+use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\UserLogin;
 
 /*
@@ -31,3 +32,7 @@ Route::get('profile',function(){
 })->middleware('auth');
 
 Route::post('login',[UserLogin::class,'login']);
+
+Route::name('user.')->group(function(){
+    Route::post('info-update',[UserController::class,'info_update'])->name('info-update');
+});

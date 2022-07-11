@@ -18,7 +18,14 @@
                 {{auth()->user()->email}}
             @endif</p>
 
-            <button class="btn btn-sm btn-success">edit profile</button>
+
+              <!-- Button trigger profile edit modal -->
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-profile">
+                edit profile
+            </button>
+
+            <button class="btn btn-sm btn-success">Follow</button>
+
 
         </div>
         <div class="col-lg-6 border border-primary">
@@ -35,3 +42,38 @@
 
     </div>
 </div>
+
+
+
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="edit-profile" tabindex="-1" aria-labelledby="edit-profileLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="edit-profileLabel">Edit Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form action="{{route('user.info-update')}}" method="post">
+            @csrf
+            About: <input name="user_about" type="text" placeholder="describe yourself"><br>
+            Address: <input name="user_address" type="text" placeholder="enter your address"><br><br>
+
+            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+
+  
+  
