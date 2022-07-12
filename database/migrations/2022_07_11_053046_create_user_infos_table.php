@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('about');
             $table->string('address');
+            $table->string('profile_picture_path')->nullable()->default('default/default-image.jpg');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

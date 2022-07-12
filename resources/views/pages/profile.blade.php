@@ -61,6 +61,14 @@
 
           <form action="{{route('user.info-update')}}" method="post">
             @csrf
+
+           {{--  <img id="user_profile" class="rounded-circle" height="150px" src="{{asset('storage/image/default/default-image.jpg')}}" alt="default image"><br> --}}
+           <div class="image-area mt-4">
+            <img height="500px" width="500px"  id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+          </div>
+
+            {{-- <input type="file" name="user_profile_image" onchange="user_profile.src.window.URL.createObjectURL(this.files[0])" value="{{asset('storage/image/default/default-image.jpg')}}"><br> --}}
+            <input class="form-control" type="file" name="file" id="image" oninput="imageResult.src=window.URL.createObjectURL(this.files[0])">
             About: <input name="user_about" type="text" placeholder="describe yourself"><br>
             Address: <input name="user_address" type="text" placeholder="enter your address"><br><br>
 
