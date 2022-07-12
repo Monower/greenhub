@@ -33,6 +33,6 @@ Route::get('profile',function(){
 
 Route::post('login',[UserLogin::class,'login']);
 
-Route::name('user.')->group(function(){
+Route::name('user.')->prefix('user')->group(function(){
     Route::post('info-update',[UserController::class,'info_update'])->name('info-update');
 });

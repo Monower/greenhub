@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_infos', function (Blueprint $table) {
             $table->id();
-            $table->string('about');
-            $table->string('address');
+            $table->string('about')->nullable();
+            $table->string('address')->nullable();
             $table->string('profile_picture_path')->nullable()->default('default/default-image.jpg');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
