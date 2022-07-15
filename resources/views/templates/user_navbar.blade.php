@@ -23,9 +23,9 @@
                 </form>
             </div>
 
-            <a class="btn btn-sm btn-primary" href="#">Messages</a>
-            <a class="btn btn-sm btn-primary" href="#">Bookmarks</a>
-            <a class="btn btn-sm btn-primary" href="#">Notices</a>
+            <a class="btn btn-sm btn-primary" href="{{route('user.get_user_message')}}">Messages</a>
+            <a class="btn btn-sm btn-primary" href="{{route('user.user_bookmarks')}}">Bookmarks</a>
+            <a class="btn btn-sm btn-primary" href="{{route('user.get_notices')}}">Notices</a>
             
             <ul class="navbar-nav me-auto">
                 <li class="nav-item dropdown">

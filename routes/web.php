@@ -35,4 +35,7 @@ Route::post('login',[UserLogin::class,'login']);
 
 Route::name('user.')->prefix('user')->group(function(){
     Route::post('info-update',[UserController::class,'info_update'])->name('info-update');
+    Route::get('bookmarks',[UserController::class,'get_user_bookmarks'])->name('user_bookmarks');
+    Route::get('message',[UserController::class,'get_user_message'])->name('get_user_message');
+    Route::get('notice',[UserController::class,'get_notices'])->name('get_notices');
 });
