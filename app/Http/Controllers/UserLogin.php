@@ -32,5 +32,12 @@ class UserLogin extends Controller
     }else{
         return redirect()->back()->withErrors(['msg'=>'email or password incorrect']);
     }
+
+    }
+
+    public function logout(){
+        Auth::logout();
+
+        return redirect(route('login'));
     }
 }

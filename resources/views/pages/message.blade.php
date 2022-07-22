@@ -1,3 +1,4 @@
+@include('templates.user_header')
 @include('templates.user_navbar')
 <div class="container">
 
