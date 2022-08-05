@@ -35,9 +35,19 @@
                     <h3>Repositories</h3>
                 </div>
                 <div class="col">
-                    <button class="btn btn-success">+</button>
+                    <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#add-repository">+</button>
                 </div>
             </div>
+
+            @if (isset($repository_name))
+              <ul>
+                @foreach ($repository_name as $repository)
+                  <li>
+                    <a href="{{route('user.show-repository', ['name'=>$repository->name])}}">{{ $repository->name}}</a>
+                  </li>
+                @endforeach
+              </ul>
+            @endif
             
         </div>
 
@@ -50,7 +60,7 @@
 
 
   
-  <!-- Modal -->
+  <!-- Edit Profile Modal -->
   <div class="modal fade" id="edit-profile" tabindex="-1" aria-labelledby="edit-profileLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -80,6 +90,38 @@
       </div>
     </div>
   </div>
+
+  {{-- add repository modal --}}
+  <div class="modal fade" id="add-repository" tabindex="-1" aria-labelledby="add-repository" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="add-repository">Create New Repository</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form action="{{route('user.add-repository')}}" method="post" enctype="multipart/form-data">
+            @csrf
+
+            @if ($errors->any())
+              @foreach($errors->all() as $error)
+                  <p class="text-danger">{{$error}}</p>
+              @endforeach
+            @endif
+            Name of the repository: <input type="text" name="name_of_the_repository"><br>
+            Description: <br>
+            <textarea name="description" cols="40" rows="10"></textarea><br>
+
+            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-sm btn-primary">Next</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+@include('templates.user_footer')
   
   
   

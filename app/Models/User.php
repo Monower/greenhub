@@ -24,4 +24,8 @@ class User extends Authenticatable
     public function user_info(){
         return $this->hasOne(UserInfo::class);
     }
+
+    public function repository(){
+        return $this->hasMany(RepositoryName::class);
+    }
 }
