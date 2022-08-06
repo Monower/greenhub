@@ -5,7 +5,7 @@
 <div class="container pt-3">
     <div class="row">
         <div class="col">
-            <h2>{{$repository_name}}</h2> 
+            <h2>{{$repository->name}}</h2> 
         </div>
         <div class="col"><button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#add-file">Add File</button></div>
         
