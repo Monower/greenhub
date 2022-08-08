@@ -1,5 +1,5 @@
 
-
+  {!! Toastr::message() !!}
 
 </body>
 </html>

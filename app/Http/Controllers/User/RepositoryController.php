@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\RepositoryFile;
 use App\Models\RepositoryName;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -58,5 +59,34 @@ class RepositoryController extends Controller
 
         $repository = RepositoryName::where(['name'=>$name, 'user_id'=>auth()->user()->id])->first();
         return view('pages.repository', ['repository'=>$repository]);
+    }
+
+    public function add_file_to_repository(Request $request){
+
+        $validator = Validator::make($request->all(),[
+            'file'=>'required'
+        ]);
+
+        if ($validator->fails()){
+            Toastr::warning('please select a file to upload');
+            return back();
+        }
+
+
+
+        $repository_file_name = RepositoryFile::where(['name'=>$request->file('file')->getClientOriginalName(), 'repository_id'=>$request->repository_id])->first();
+
+        if(isset($repository_file_name)){
+            Toastr::warning('a file with the same name already exists in this repository');
+            return back();
+        }else{
+
+            $repository = RepositoryName::find($request->repository_id);
+
+            $file_name = $request->file('file')->getClientOriginalName();
+
+            Storage::disk('public')->put('repositories/'.auth()->user()->email.'/'.$repository->name.'/'.$file_name, file_get_contents($request->file('file')));
+        }
+        return $request->file('file')->getClientOriginalName();
     }
 }
