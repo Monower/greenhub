@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function index(){
-        $repository_name= RepositoryName::where('user_id', auth()->user()->id)->latest()->get();
+        $repository= RepositoryName::where('user_id', auth()->user()->id)->latest()->get();
         
-        return view('pages.profile', ['repository_name'=>$repository_name]);
+        return view('pages.profile', ['repository'=>$repository]);
     }
     public function info_update(Request $request){
 

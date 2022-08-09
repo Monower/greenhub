@@ -8,8 +8,16 @@
             <h2>{{$repository->name}}</h2> 
         </div>
         <div class="col"><button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#add-file">Add File</button></div>
-        
     </div>
+
+    <ul>
+      @foreach ($file_name as $file)
+        <li>
+          {{$file->name}}
+        </li>
+      @endforeach
+    </ul>
+
 </div>
 
 

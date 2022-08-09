@@ -30,6 +30,6 @@ Route::name('user.')->prefix('user')->middleware('auth')->group(function(){
     Route::get('notice',[UserController::class,'get_notices'])->name('get_notices');
     Route::get('logout', [UserLogin::class,'logout'])->name('logout');
     Route::post('add-repository', [RepositoryController::class, 'add_repository'])->name('add-repository');
-    Route::get('repository/{name}', [RepositoryController::class, 'show_repository'])->name('show-repository');
+    Route::get('repository/{repository_id}', [RepositoryController::class, 'show_repository'])->name('show-repository');
     Route::post('add-file', [RepositoryController::class, 'add_file_to_repository'])->name('add-file');
 });

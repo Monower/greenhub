@@ -39,11 +39,11 @@
                 </div>
             </div>
 
-            @if (isset($repository_name))
+            @if (isset($repository))
               <ul>
-                @foreach ($repository_name as $repository)
+                @foreach ($repository as $repository)
                   <li>
-                    <a href="{{route('user.show-repository', ['name'=>$repository->name])}}">{{ $repository->name}}</a>
+                    <a href="{{route('user.show-repository', ['repository_id'=>$repository->id])}}">{{ $repository->name}}</a>
                   </li>
                 @endforeach
               </ul>

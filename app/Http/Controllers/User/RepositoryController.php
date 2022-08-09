@@ -55,10 +55,11 @@ class RepositoryController extends Controller
         }
     }
 
-    public function show_repository($name){
+    public function show_repository($repository_id){
 
-        $repository = RepositoryName::where(['name'=>$name, 'user_id'=>auth()->user()->id])->first();
-        return view('pages.repository', ['repository'=>$repository]);
+        $repository = RepositoryName::where(['id'=>$repository_id, 'user_id'=>auth()->user()->id])->first();
+        $file_name = RepositoryFile::where('repository_id',$repository_id)->get();
+        return view('pages.repository', ['repository'=>$repository, 'file_name'=>$file_name]);
     }
 
     public function add_file_to_repository(Request $request){
@@ -82,11 +83,18 @@ class RepositoryController extends Controller
         }else{
 
             $repository = RepositoryName::find($request->repository_id);
-
             $file_name = $request->file('file')->getClientOriginalName();
 
             Storage::disk('public')->put('repositories/'.auth()->user()->email.'/'.$repository->name.'/'.$file_name, file_get_contents($request->file('file')));
+
+            RepositoryFile::create([
+                'name'=>$file_name,
+                'repository_id'=>$request->repository_id,
+                'created_at'=>now()
+            ]);
+
+            Toastr::success('file uploaded successfully');
+            return back();
         }
-        return $request->file('file')->getClientOriginalName();
     }
 }

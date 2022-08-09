@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class RepositoryFile extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'repository_id',
+    ];
 }
