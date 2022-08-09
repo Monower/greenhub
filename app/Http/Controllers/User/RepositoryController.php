@@ -97,4 +97,29 @@ class RepositoryController extends Controller
             return back();
         }
     }
+
+    public function delete_repository(Request $request){
+
+        if($request->repository_delete == 'yes'){
+            $repository = RepositoryName::where(['id'=>$request->repository_id, 'user_id'=>auth()->user()->id])->first();
+            $repository->delete();
+
+            Toastr::success('Repository deleted successfully');
+            return redirect(route('user.dashboard'));
+        }elseif($request->repository_delete == 'no'){
+            return back();
+        }
+    }
+
+    public function delete_file(Request $request){
+        if($request->delete_file == 'yes'){
+            $repository_file = RepositoryFile::where(['id'=>$request->file_id, 'repository_id'=>$request->repository_id])->first();
+            $repository_file->delete();
+
+            Toastr::success('File deleted successfully');
+            return back();
+        }elseif($request->delete_file == 'no'){
+            return back();
+        }
+    }
 }
