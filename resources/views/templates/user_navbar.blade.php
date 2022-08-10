@@ -3,7 +3,8 @@
      <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="padding: 15px">
             <div class="container-fluid">
                 <form class="d-flex">
-                    <input class="form-control me-sm-2" type="text" placeholder="Search">
+                    <input id="search" class="form-control me-sm-2" type="text" placeholder="Search">
+                    <div id="result"></div>
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
