@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\RepositoryName;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,5 +31,31 @@ class UserController extends Controller
 
     public function get_notices(){
         return view('pages.notice');
+    }
+
+    public function search_user(Request $request){
+        if($request->ajax()){
+            /* return $request->search; */
+
+
+            $value =$request->search;
+
+            $users = User::where(function($q) use($value){
+                $q->orWhere('user_name', 'like', "%{$value}%")
+                    ->orWhere('email', 'like', "%{$value}%");
+            })->get();
+
+
+
+
+            if(isset($users)){
+                return response()->json($users);
+            }
+            
+        }
+        
+/*         $users = User::where(['user_name'=>$request->data])
+                        ->get();
+        return response()->json($users); */
     }
 }

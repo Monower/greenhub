@@ -3,8 +3,8 @@
      <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="padding: 15px">
             <div class="container-fluid">
                 <form class="d-flex">
-                    <input id="search" class="form-control me-sm-2" type="text" placeholder="Search">
-                    <div id="result"></div>
+                    <input id="search" class="form-control me-sm-2" type="text" placeholder="Search" name="search">
+                    
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
@@ -24,6 +24,16 @@
                 </li>
             </ul>
       </nav>
+      <div class="container">
+
+        
+      </div>
+      <div class="row" style="padding-left: 30px">
+        <div class="col col-3">
+            <div style="background-color: aquamarine" id="result"></div>
+        </div>
+    </div>
+      
 
       
       

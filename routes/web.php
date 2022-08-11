@@ -22,6 +22,8 @@ Route::post('signup',[AddUser::class,'add']);
 
 Route::post('login',[UserLogin::class,'login']);
 
+Route::post('user-search', [UserController::class, 'search_user'])->name('search-user');
+
 Route::name('user.')->prefix('user')->middleware('auth')->group(function(){
     Route::get('/dashboard', [UserController::class,'index'])->name('dashboard');
     Route::post('info-update',[UserController::class,'info_update'])->name('info-update');
