@@ -18,7 +18,7 @@
             <a class="nav-link" href="#">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="signup">SignUp</a>
+            <a class="nav-link" href="{{route('user-signup')}}">SignUp</a>
           </li>
         </ul>
       </div>

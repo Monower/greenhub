@@ -15,7 +15,7 @@ Route::get('/', function () {
 
 Route::get('signup', function () {
     return view('pages.signup');
-});
+})->name('user-signup');
 
 Route::post('signup',[AddUser::class,'add']);
 

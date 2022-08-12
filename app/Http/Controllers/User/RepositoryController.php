@@ -34,7 +34,7 @@ class RepositoryController extends Controller
 
             Storage::disk('public')->makeDirectory('repositories/'.auth()->user()->email.'/'.$request->name_of_the_repository);
 
-            RepositoryName::create([
+            $repository = RepositoryName::create([
                 'name'=>$request->name_of_the_repository,
                 'description'=>$request->description,
                 'user_id'=>auth()->user()->id,
@@ -43,7 +43,7 @@ class RepositoryController extends Controller
         }else{
             Storage::disk('public')->makeDirectory('repositories/'.auth()->user()->email.'/'.$request->name_of_the_repository);
 
-            RepositoryName::create([
+            $repository = RepositoryName::create([
                 'name'=>$request->name_of_the_repository,
                 'description'=>$request->description,
                 'user_id'=>auth()->user()->id,
@@ -51,7 +51,7 @@ class RepositoryController extends Controller
             ]);
 
 
-            return redirect(route('user.show-repository',['name'=>$request->name_of_the_repository]));
+            return redirect(route('user.show-repository',['repository_id'=>$repository->id]));
         }
     }
 

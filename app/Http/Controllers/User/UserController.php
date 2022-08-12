@@ -35,27 +35,21 @@ class UserController extends Controller
 
     public function search_user(Request $request){
         if($request->ajax()){
-            /* return $request->search; */
 
 
             $value =$request->search;
 
-            $users = User::where(function($q) use($value){
-                $q->orWhere('user_name', 'like', "%{$value}%")
+/*             $users = User::where(function($q) use($value){
+                $q->orWhere('user_name', 'like', )
                     ->orWhere('email', 'like', "%{$value}%");
-            })->get();
+            })->get(); */
 
-
-
-
+            $users = User::where('user_name', 'like', "%{$value}%")->get();
             if(isset($users)){
                 return response()->json($users);
             }
             
         }
         
-/*         $users = User::where(['user_name'=>$request->data])
-                        ->get();
-        return response()->json($users); */
     }
 }

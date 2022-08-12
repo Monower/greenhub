@@ -4,7 +4,7 @@
 
 <div class="container pt-3">
     <div class="row">
-        <div class="col-lg-6 border border-primary">
+        <div class="col-lg-6">
             <img class="rounded-circle" height="150px" src="{{asset('storage/image/default/default-image.jpg')}}" alt="default image">
 
             <p>@if (auth()->check())
@@ -29,7 +29,7 @@
 
 
         </div>
-        <div class="col-lg-6 border border-primary">
+        <div class="col-lg-6">
             <div class="row">
                 <div class="col">
                     <h3>Repositories</h3>

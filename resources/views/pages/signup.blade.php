@@ -18,7 +18,7 @@
             <a class="nav-link" href="#">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Login</a>
+            <a class="nav-link" href="{{route('login')}}">Login</a>
           </li>
         </ul>
       </div>
