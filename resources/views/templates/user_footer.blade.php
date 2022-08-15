@@ -19,13 +19,13 @@
           data: {'search': data},
 
           success: function(data){
-            console.log(data);
 
             var output = '';
             
             if(data.length > 0){
               for(var i in data){
-                output+=`<p>${data[i].user_name}</p>`;
+                output+=`<a href="{{route('user.dashboard', ['name'=>'demo1'])}}">${data[i].user_name}</a>`;
+                
               }
               $('#result').html(output);
             }

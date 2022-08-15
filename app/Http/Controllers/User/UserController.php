@@ -10,7 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index($name = null){
+        if(isset($name)){
+            $user = User::where('user_name',$name)->first();
+
+            $repository= RepositoryName::where('user_id', $user->id)->latest()->get();
+            return view('pages.profile', ['repository'=>$repository]);
+
+        }
         $repository= RepositoryName::where('user_id', auth()->user()->id)->latest()->get();
         
         return view('pages.profile', ['repository'=>$repository]);
