@@ -5,10 +5,12 @@
 <div class="container pt-3">
     <div class="row">
         <div class="col-lg-6">
-            <img class="rounded-circle" height="150px" src="{{asset('storage/image/default/default-image.jpg')}}" alt="default image">
+            @php($user_info = \App\Models\UserInfo::where('user_id', auth()->user()->id)->first())
+            @php($user_profile_image = isset($user_info) ? $user_info->profile_picture_path : '')
+            <img class="rounded-circle" height="150px" src="{{asset('storage/image/profile/'.$user_profile_image)}}" alt="default image" onerror="this.src='{{asset('storage/image/default/default-image.png')}}'">
 
             <p>@if (auth()->check())
-                {{auth()->user()->user_name}}
+                <b>{{auth()->user()->user_name}}</b>
             @endif</p>
 
             <p>about</p>
@@ -25,6 +27,8 @@
                 edit profile
             </button>
 
+            
+
             @if (auth()->check())
                 @if (!auth()->user()->id)
                   <button class="btn btn-sm btn-success">Follow</button>
@@ -35,15 +39,8 @@
                   </button>
                 @endif
             @endif
-
-
-
-
-
-            
-
-
         </div>
+
         <div class="col-lg-6">
             <div class="row">
                 <div class="col">
@@ -87,10 +84,9 @@
 
           <form action="{{route('user.info-update')}}" method="post" enctype="multipart/form-data">
             @csrf
-
            {{--  <img id="user_profile" class="rounded-circle" height="150px" src="{{asset('storage/image/default/default-image.jpg')}}" alt="default image"><br> --}}
            <div class="image-area mt-4">
-            <img height="500px" width="500px"  id="imageResult" src="{{asset('storage/image/default/default-image.jpg')}}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+            <img height="200px" width="300px"  id="imageResult" src="{{asset('storage/image/default/default-image.jpg')}}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
           </div>
 
             {{-- <input type="file" name="user_profile_image" onchange="user_profile.src.window.URL.createObjectURL(this.files[0])" value="{{asset('storage/image/default/default-image.jpg')}}"><br> --}}
