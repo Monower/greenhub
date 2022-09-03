@@ -5,6 +5,7 @@
 <div class="container pt-3">
     <div class="row">
         <div class="col-lg-6">
+          {{dd($id)}}
             @php($user_info = \App\Models\UserInfo::where('user_id', auth()->user()->id)->first())
             @php($user_profile_image = isset($user_info) ? $user_info->profile_picture_path : '')
             <img class="rounded-circle" height="150px" src="{{asset('storage/image/profile/'.$user_profile_image)}}" alt="default image" onerror="this.src='{{asset('storage/image/default/default-image.png')}}'">

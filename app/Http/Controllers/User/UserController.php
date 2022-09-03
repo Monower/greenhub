@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function index($name = null){
-        if(isset($name)){
-            $user = User::where('user_name',$name)->first();
+    public function index($id = null){
+        if(isset($id)){
+            $user = User::find($id);
 
             $repository= RepositoryName::where('user_id', $user->id)->latest()->get();
-            return view('pages.profile', ['repository'=>$repository]);
+            return view('pages.profile', ['id'=>$user->id,'repository'=>$repository]);
 
         }
-        $repository= RepositoryName::where('user_id', auth()->user()->id)->latest()->get();
+        $repository= RepositoryName::where('user_id', $id)->latest()->get();
         
         return view('pages.profile', ['repository'=>$repository]);
     }

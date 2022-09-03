@@ -25,7 +25,7 @@ Route::post('login',[UserLogin::class,'login']);
 Route::post('user-search', [UserController::class, 'search_user'])->name('search-user');
 
 Route::name('user.')->prefix('user')->middleware('auth')->group(function(){
-    Route::get('/dashboard/{name?}', [UserController::class,'index'])->name('dashboard');
+    Route::get('/dashboard/{id?}', [UserController::class,'index'])->name('dashboard');
     Route::post('info-update',[UserController::class,'info_update'])->name('info-update');
     Route::get('bookmarks',[UserController::class,'get_user_bookmarks'])->name('user_bookmarks');
     Route::get('message',[UserController::class,'get_user_message'])->name('get_user_message');

@@ -37,7 +37,7 @@ class AddUser extends Controller
             }
 
 
-            return redirect(route('user.dashboard'));
+            return redirect(route('login'));
         }
 
     }

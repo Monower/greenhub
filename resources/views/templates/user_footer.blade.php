@@ -3,7 +3,7 @@
 
 </body>
 <script >
-  $(document).ready(function(){
+/*   $(document).ready(function(){
     $('#search').keyup(function(){
       $.ajaxSetup({
         headers: {
@@ -42,6 +42,6 @@
       
 
     })
-  })
+  }) */
 </script>
 </html>

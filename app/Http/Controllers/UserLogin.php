@@ -19,10 +19,10 @@ class UserLogin extends Controller
         ]);
 
         if(Auth::attempt($validate)){
-            $name=User::select('user_name')->where('email',$r->email)->first();
+            $name=User::where('email',$r->email)->first();
             $r->session()->put('user',$name->user_name);
 
-            return redirect(route('user.dashboard'));
+            return redirect(route('user.dashboard', ['id'=>$name->id]));
     }else{
         return redirect()->back()->withErrors(['msg'=>'email or password incorrect']);
     }
