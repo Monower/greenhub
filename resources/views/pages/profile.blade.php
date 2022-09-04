@@ -5,22 +5,21 @@
 <div class="container pt-3">
     <div class="row">
         <div class="col-lg-6">
-          {{dd($id)}}
-            @php($user_info = \App\Models\UserInfo::where('user_id', auth()->user()->id)->first())
+          {{-- {{dd($id)}} --}}
+            @php($user_info = \App\Models\UserInfo::where('user_id', $id)->first())
             @php($user_profile_image = isset($user_info) ? $user_info->profile_picture_path : '')
-            <img class="rounded-circle" height="150px" src="{{asset('storage/image/profile/'.$user_profile_image)}}" alt="default image" onerror="this.src='{{asset('storage/image/default/default-image.png')}}'">
+            <img width="150px" height="150px" src="{{asset('storage/image/profile/'.$user_profile_image)}}" alt="default image" onerror="this.src='{{asset('storage/image/default/default-image.png')}}'">
 
-            <p>@if (auth()->check())
-                <b>{{auth()->user()->user_name}}</b>
-            @endif</p>
+            @php($user = \App\Models\User::find($id))
+            <p>{{$user->user_name}}</p>
 
-            <p>about</p>
-            <p>addres</p>
+            <p>{{$user->email}}</p>
+
+            <p>{{$user_info->about}}</p>
+            <p>{{$user_info->address}}</p>
 
 
-            <p>@if (auth()->check())
-                {{auth()->user()->email}}
-            @endif</p>
+
 
 
               <!-- Button trigger profile edit modal -->
@@ -87,15 +86,18 @@
             @csrf
            {{--  <img id="user_profile" class="rounded-circle" height="150px" src="{{asset('storage/image/default/default-image.jpg')}}" alt="default image"><br> --}}
            <div class="image-area mt-4">
-            <img height="200px" width="300px"  id="imageResult" src="{{asset('storage/image/default/default-image.jpg')}}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+            <img height="200px" width="300px"  id="imageResult" src="{{asset('storage/image/profile/'.$user_profile_image)}}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
           </div>
 
             {{-- <input type="file" name="user_profile_image" onchange="user_profile.src.window.URL.createObjectURL(this.files[0])" value="{{asset('storage/image/default/default-image.jpg')}}"><br> --}}
-            <input class="form-control" type="file" name="user_image" id="image" oninput="imageResult.src=window.URL.createObjectURL(this.files[0])">
-            About: <input name="user_about" type="text" placeholder="describe yourself"><br>
-            Address: <input name="user_address" type="text" placeholder="enter your address"><br><br>
+            <input class="form-control" type="file" name="user_image" id="image" oninput="imageResult.src=window.URL.createObjectURL(this.files[0])" required>
 
-            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+            <label for="exampleInputEmail1" class="form-label mt-4">About</label>
+            <input name="user_about" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Describe your self">
+            <label for="exampleInputEmail2" class="form-label">Address</label>
+            <input name="user_address" type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter Address"><br>
+
+            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
           </form>
         </div>

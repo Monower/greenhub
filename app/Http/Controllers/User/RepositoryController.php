@@ -105,7 +105,7 @@ class RepositoryController extends Controller
             $repository->delete();
 
             Toastr::success('Repository deleted successfully');
-            return redirect(route('user.dashboard'));
+            return redirect(route('user.dashboard', ['id'=>auth()->user()->id]));
         }elseif($request->repository_delete == 'no'){
             return back();
         }
@@ -121,5 +121,12 @@ class RepositoryController extends Controller
         }elseif($request->delete_file == 'no'){
             return back();
         }
+    }
+
+    public function view_file($file_id){
+        $file = RepositoryFile::with('repository_name')->find($file_id);
+        dd($file);
+
+        //$contents = Storage::disk('public')->get()
     }
 }

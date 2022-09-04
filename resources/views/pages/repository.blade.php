@@ -5,8 +5,10 @@
 <div class="container pt-3">
     <div class="row">
         <div class="col-6">
-            <h2>{{$repository->name}}</h2> 
+            <h2>{{$repository->name}}</h2>
         </div>
+        @php($user = \App\Models\RepositoryName::with('user')->find($repository->id))
+        {{dd($user->user->email)}}
         <div class="col-5"><button class="btn btn-sm btn-success" type="button" data-bs-toggle="modal" data-bs-target="#add-file">Add File</button></div>
         <div class="col">
           <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#delete_repository">Delete</button>
@@ -26,21 +28,19 @@
           </tr>
         </thead>
         <tbody>
-          @php
-          $si = 1;
-          @endphp
+
+          @php($si = 1)
           @foreach ($file_name as $file)
             <tr class="table-active">
                   <td>{{$si}}</td>
-                  <td>{{$file->name}}</td>
+                  <td><a href="">{{$file->name}}</a></td>
                   <td><button class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#delete_file{{$file->id}}">Delete</button></td>
-                  @php
-                      $si +=1;
-                  @endphp
+
+                  @php($si +=1)
 
             </tr>
 
-            {{-- delete files --}}
+
             <div class="modal fade" id="delete_file{{$file->id}}" tabindex="-1" aria-labelledby="delete_file" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -81,7 +81,7 @@
   </div>
 </div>
 
-{{-- add files to this repository --}}
+
 <div class="modal fade" id="add-file" tabindex="-1" aria-labelledby="add-file" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -112,7 +112,7 @@
   </div>
 
 
-  {{-- delete this repository --}}
+
   <div class="modal fade" id="delete_repository" tabindex="-1" aria-labelledby="delete_repository" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

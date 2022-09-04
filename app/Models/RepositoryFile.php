@@ -13,4 +13,8 @@ class RepositoryFile extends Model
         'name',
         'repository_id',
     ];
+
+    public function repository_name(){
+        return $this->belongsTo(RepositoryName::class, 'repository_id ');
+    }
 }

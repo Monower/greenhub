@@ -36,4 +36,5 @@ Route::name('user.')->prefix('user')->middleware('auth')->group(function(){
     Route::post('add-file', [RepositoryController::class, 'add_file_to_repository'])->name('add-file');
     Route::post('delete-repository', [RepositoryController::class, 'delete_repository'])->name('delete-repository');
     Route::post('delete-file', [RepositoryController::class, 'delete_file'])->name('delete-file');
+    Route::get('view-file/{user_mail}/{file_id}', [RepositoryController::class, 'view_file'])->name('view-file');
 });
