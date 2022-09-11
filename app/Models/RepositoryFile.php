@@ -15,6 +15,6 @@ class RepositoryFile extends Model
     ];
 
     public function repository_name(){
-        return $this->belongsTo(RepositoryName::class, 'repository_id ');
+        return $this->belongsTo(RepositoryName::class, 'repository_id');
     }
 }

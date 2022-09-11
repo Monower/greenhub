@@ -8,6 +8,7 @@ use App\Models\RepositoryName;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class RepositoryController extends Controller
@@ -123,10 +124,39 @@ class RepositoryController extends Controller
         }
     }
 
-    public function view_file($file_id){
+    public function view_file($user_mail,$file_id){
         $file = RepositoryFile::with('repository_name')->find($file_id);
-        dd($file);
+        //dd($file->repository_name->name);
 
-        //$contents = Storage::disk('public')->get()
+/*         $contents = Storage::disk('public')->get('repositories/'.$user_mail.'/'.$file->repository_name->name.'/'.$file->name);
+        foreach(array($contents) as $line){
+            echo $line.'<br>';
+        } */
+
+/*         foreach(file(storage_path('repositories/'.$user_mail.'/'.$file->repository_name->name.'/'.$file->name)) as $line){
+            echo $line;
+        } */
+
+        $handle  = fopen(storage_path('app/public/repositories/'.$user_mail.'/'.$file->repository_name->name.'/'.$file->name), 'r');
+
+        if($handle){
+
+/*             while(($line = fgets($handle)) != false){
+                echo $line.'<br>';
+            } */
+
+            return view('pages.file', ['contents'=>$handle]);
+            //fclose($handle);
+        }
+
+/*         $directory = storage_path('app/public/repositories/'.$user_mail.'/'.$file->repository_name->name.'/'.$file->name);
+
+        $files = File::get($directory);
+
+        foreach ($files as $file) {
+            $contents = $file->getContents();
+
+            echo $contents;
+        } */
     }
 }

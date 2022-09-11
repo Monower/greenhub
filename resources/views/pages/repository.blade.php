@@ -8,7 +8,7 @@
             <h2>{{$repository->name}}</h2>
         </div>
         @php($user = \App\Models\RepositoryName::with('user')->find($repository->id))
-        {{dd($user->user->email)}}
+        {{-- {{dd($user->user->email)}} --}}
         <div class="col-5"><button class="btn btn-sm btn-success" type="button" data-bs-toggle="modal" data-bs-target="#add-file">Add File</button></div>
         <div class="col">
           <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#delete_repository">Delete</button>
@@ -33,7 +33,7 @@
           @foreach ($file_name as $file)
             <tr class="table-active">
                   <td>{{$si}}</td>
-                  <td><a href="">{{$file->name}}</a></td>
+                  <td><a href="{{route('user.view-file', ['user_mail'=>$user->user->email, 'file_id'=>$file->id])}}">{{$file->name}}</a></td>
                   <td><button class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#delete_file{{$file->id}}">Delete</button></td>
 
                   @php($si +=1)
