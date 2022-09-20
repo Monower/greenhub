@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\FileComment;
 use App\Models\RepositoryFile;
 use App\Models\RepositoryName;
 use Illuminate\Http\Request;
@@ -145,7 +146,7 @@ class RepositoryController extends Controller
                 echo $line.'<br>';
             } */
 
-            return view('pages.file', ['contents'=>$handle]);
+            return view('pages.file', ['contents'=>$handle, 'file'=>$file]);
             //fclose($handle);
         }
 
@@ -158,5 +159,18 @@ class RepositoryController extends Controller
 
             echo $contents;
         } */
+    }
+
+    public function add_comment(Request $request){
+
+        FileComment::create([
+            'file_id'=>$request->file_id,
+            'user_id'=>$request->user_id,
+            'comment'=>$request->comment,
+            'created_at'=>now()
+        ]);
+
+        Toastr::success('Comment added successfully');
+        return back();
     }
 }
