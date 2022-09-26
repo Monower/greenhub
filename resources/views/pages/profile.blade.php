@@ -15,8 +15,11 @@
 
             <p>{{$user->email}}</p>
 
-            <p>{{$user_info->about}}</p>
-            <p>{{$user_info->address}}</p>
+            @if (isset($user_info))
+              <p>{{$user_info->about}}</p>
+              <p>{{$user_info->address}}</p>
+            @endif
+
 
 
 

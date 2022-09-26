@@ -3,7 +3,7 @@
 
 </body>
 <script >
-/*   $(document).ready(function(){
+  $(document).ready(function(){
     $('#search').keyup(function(){
       $.ajaxSetup({
         headers: {
@@ -24,7 +24,7 @@
             
             if(data.length > 0){
               for(var i in data){
-                output+=`<a href="{{route('user.dashboard', ['name'=>'demo1'])}}">${data[i].user_name}</a>`;
+                output+=`<a href="http://localhost/greenhub/public/user/dashboard/${data[i].id}">${data[i].user_name}</a><br>`;
                 
               }
               $('#result').html(output);
@@ -42,6 +42,6 @@
       
 
     })
-  }) */
+  })
 </script>
 </html>
