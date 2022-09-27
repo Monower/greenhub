@@ -25,10 +25,19 @@
 
 
 
+
+
               <!-- Button trigger profile edit modal -->
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-profile">
                 edit profile
             </button>
+
+            @if (auth()->user()->id != $id)
+              <button type="button" class="btn btn-sm btn-primary">
+                Follow
+              </button>
+            @endif
+
 
             
 
