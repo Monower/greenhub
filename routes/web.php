@@ -32,10 +32,12 @@ Route::name('user.')->prefix('user')->middleware('auth')->group(function(){
     Route::get('notice',[UserController::class,'get_notices'])->name('get_notices');
     Route::get('logout', [UserLogin::class,'logout'])->name('logout');
     Route::post('add-repository', [RepositoryController::class, 'add_repository'])->name('add-repository');
-    Route::get('repository/{repository_id}', [RepositoryController::class, 'show_repository'])->name('show-repository');
+    Route::get('repository/{repository_id}/{user_id}', [RepositoryController::class, 'show_repository'])->name('show-repository');
     Route::post('add-file', [RepositoryController::class, 'add_file_to_repository'])->name('add-file');
     Route::post('delete-repository', [RepositoryController::class, 'delete_repository'])->name('delete-repository');
     Route::post('delete-file', [RepositoryController::class, 'delete_file'])->name('delete-file');
     Route::get('view-file/{user_mail}/{file_id}', [RepositoryController::class, 'view_file'])->name('view-file');
     Route::post('add-comment', [RepositoryController::class, 'add_comment'])->name('add-comment');
+    Route::get('follow/{id}', [UserController::class, 'follow'])->name('follow');
+    Route::get('unfollow/{id}', [UserController::class, 'unfollow'])->name('unfollow');
 });

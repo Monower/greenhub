@@ -57,11 +57,11 @@ class RepositoryController extends Controller
         }
     }
 
-    public function show_repository($repository_id){
+    public function show_repository($repository_id, $user_id){
 
-        $repository = RepositoryName::where(['id'=>$repository_id, 'user_id'=>auth()->user()->id])->first();
+        $repository = RepositoryName::where(['id'=>$repository_id, 'user_id'=>$user_id])->first();
         $file_name = RepositoryFile::where('repository_id',$repository_id)->get();
-        return view('pages.repository', ['repository'=>$repository, 'file_name'=>$file_name]);
+        return view('pages.repository', ['repository'=>$repository, 'file_name'=>$file_name, 'user_id'=>$user_id]);
     }
 
     public function add_file_to_repository(Request $request){

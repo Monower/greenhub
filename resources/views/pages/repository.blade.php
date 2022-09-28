@@ -9,10 +9,14 @@
         </div>
         @php($user = \App\Models\RepositoryName::with('user')->find($repository->id))
         {{-- {{dd($user->user->email)}} --}}
-        <div class="col-5"><button class="btn btn-sm btn-success" type="button" data-bs-toggle="modal" data-bs-target="#add-file">Add File</button></div>
-        <div class="col">
-          <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#delete_repository">Delete</button>
-        </div>
+
+        @if (auth()->user()->id == $user_id)
+          <div class="col-5"><button class="btn btn-sm btn-success" type="button" data-bs-toggle="modal" data-bs-target="#add-file">Add File</button></div>
+          <div class="col">
+            <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#delete_repository">Delete</button>
+          </div>
+        @endif
+
     </div>
 </div>
 

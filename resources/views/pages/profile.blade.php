@@ -28,14 +28,21 @@
 
 
               <!-- Button trigger profile edit modal -->
-            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-profile">
+
+            @if (auth()->user()->id == $id)
+              <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-profile">
                 edit profile
-            </button>
+              </button>
+            @endif
+
+            @php($follow_info = \App\Models\Following::where('user_id', auth()->user()->id)->where('following_id',$id)->first())
 
             @if (auth()->user()->id != $id)
-              <button type="button" class="btn btn-sm btn-primary">
-                Follow
-              </button>
+              @if (isset($follow_info))
+                <a href="{{route('user.unfollow', ['id'=>$id])}}" class="btn btn-sm btn-dark">Unfollow</a> 
+              @else
+                <a href="{{route('user.follow', ['id'=>$id])}}" class="btn btn-sm btn-primary">Follow</a>
+              @endif
             @endif
 
 
@@ -67,7 +74,7 @@
               <ul>
                 @foreach ($repository as $repository)
                   <li>
-                    <a href="{{route('user.show-repository', ['repository_id'=>$repository->id])}}">{{ $repository->name}}</a>
+                    <a href="{{route('user.show-repository', ['repository_id'=>$repository->id, 'user_id'=>$id])}}">{{ $repository->name}}</a>
                   </li>
                 @endforeach
               </ul>

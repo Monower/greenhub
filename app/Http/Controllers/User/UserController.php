@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Following;
 use App\Models\RepositoryName;
 use App\Models\User;
 use App\Models\UserInfo;
@@ -89,5 +90,22 @@ class UserController extends Controller
             
         }
         
+    }
+
+    public function follow($id){
+        Following::create([
+            'user_id'=>auth()->user()->id,
+            'following_id'=>$id
+        ]);
+
+        return back();
+    }
+
+    public function unfollow($id){
+        Following::where('user_id', auth()->user()->id)
+                    ->where('following_id', $id)
+                    ->delete();
+
+        return back();
     }
 }
