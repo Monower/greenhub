@@ -105,16 +105,18 @@
             @csrf
            {{--  <img id="user_profile" class="rounded-circle" height="150px" src="{{asset('storage/image/default/default-image.jpg')}}" alt="default image"><br> --}}
            <div class="image-area mt-4">
-            <img height="200px" width="300px"  id="imageResult" src="{{asset('storage/image/profile/'.$user_profile_image)}}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+            <img height="200px" width="300px"  id="imageResult" src="{{asset('storage/image/profile/'.$user_profile_image)}}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" onerror="this.src='{{asset('storage/image/default/default-image.png')}}'">
           </div>
 
             {{-- <input type="file" name="user_profile_image" onchange="user_profile.src.window.URL.createObjectURL(this.files[0])" value="{{asset('storage/image/default/default-image.jpg')}}"><br> --}}
+            <small>*select an image to change the profile picture*</small>
             <input class="form-control" type="file" name="user_image" id="image" oninput="imageResult.src=window.URL.createObjectURL(this.files[0])" required>
 
             <label for="exampleInputEmail1" class="form-label mt-4">About</label>
-            <input name="user_about" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Describe your self">
+            
+            <input name="user_about" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{isset($user_info) ? $user_info->about : ''}}" placeholder="{{empty($user_info) ? 'describe your self' : ''}}">
             <label for="exampleInputEmail2" class="form-label">Address</label>
-            <input name="user_address" type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter Address"><br>
+            <input name="user_address" type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" value="{{isset($user_info) ? $user_info->address : ''}}" placeholder="{{empty($user_info) ? 'provide your address' : ''}}"><br>
 
             <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-sm btn-primary">Save changes</button>

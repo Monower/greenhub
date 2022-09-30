@@ -53,7 +53,7 @@ class RepositoryController extends Controller
             ]);
 
 
-            return redirect(route('user.show-repository',['repository_id'=>$repository->id]));
+            return redirect(route('user.show-repository',['repository_id'=>$repository->id, 'user_id'=>auth()->user()->id]));
         }
     }
 

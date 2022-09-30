@@ -16,7 +16,7 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Options</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{route('user.dashboard', ['id'=>auth()->user()->id])}}">Profile</a>
-                    <a class="dropdown-item" href="#">Following</a>
+                    <a class="dropdown-item" href="{{route('user.following')}}">Following</a>
                     <a class="dropdown-item" href="{{route('user.logout')}}">Logout</a>
                 </div>
                 </li>

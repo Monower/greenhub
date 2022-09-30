@@ -40,4 +40,5 @@ Route::name('user.')->prefix('user')->middleware('auth')->group(function(){
     Route::post('add-comment', [RepositoryController::class, 'add_comment'])->name('add-comment');
     Route::get('follow/{id}', [UserController::class, 'follow'])->name('follow');
     Route::get('unfollow/{id}', [UserController::class, 'unfollow'])->name('unfollow');
+    Route::get('following', [UserController::class, 'following'])->name('following');
 });

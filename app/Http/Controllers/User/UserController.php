@@ -108,4 +108,8 @@ class UserController extends Controller
 
         return back();
     }
+
+    public function following(){
+        return view('pages.following');
+    }
 }
