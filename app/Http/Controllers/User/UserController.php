@@ -112,4 +112,6 @@ class UserController extends Controller
     public function following(){
         return view('pages.following');
     }
+
+
 }

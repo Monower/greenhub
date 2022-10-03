@@ -6,9 +6,19 @@
     <div class="row">
         <div class="col-6">
             <h2>{{$repository->name}}</h2>
-        </div>
-        @php($user = \App\Models\RepositoryName::with('user')->find($repository->id))
 
+        </div>
+        <div class="col">
+          @if (auth()->user()->id != $user_id)
+              @if (\App\Models\RepositoryBookmark::where(['user_id'=>auth()->user()->id, 'repository_id'=>$repository->id])->exists())
+                <a title="un-bookmark this repository" href="{{route('user.remove-bookmark', ['repository_id'=>$repository->id])}}" class="btn btn-sm"><i class="bi bi-bookmarks-fill"></i></a>
+              @else
+                <a title="bookmark this repository" href="{{route('user.add-bookmark', ['repository_id'=>$repository->id])}}" class="btn btn-sm"><i class="bi bi-bookmarks"></i></a>
+              @endif
+          @endif
+        </div>
+
+        @php($user = \App\Models\RepositoryName::with('user')->find($repository->id))
         @if (auth()->user()->id == $user_id)
           <div class="col-5"><button class="btn btn-sm btn-success" type="button" data-bs-toggle="modal" data-bs-target="#add-file">Add File</button></div>
           <div class="col">
@@ -16,8 +26,10 @@
           </div>
         @endif
 
+
+
     </div>
-    <i class="bi bi-bookmarks"></i>
+    
 </div>
 
 <div class="container">

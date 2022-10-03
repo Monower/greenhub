@@ -41,4 +41,6 @@ Route::name('user.')->prefix('user')->middleware('auth')->group(function(){
     Route::get('follow/{id}', [UserController::class, 'follow'])->name('follow');
     Route::get('unfollow/{id}', [UserController::class, 'unfollow'])->name('unfollow');
     Route::get('following', [UserController::class, 'following'])->name('following');
+    Route::get('add-bookmark/{repository_id}', [RepositoryController::class, 'add_bookmark'])->name('add-bookmark');
+    Route::get('remove-bookmark/{repository_id}', [RepositoryController::class, 'remove_bookmark'])->name('remove-bookmark');
 });

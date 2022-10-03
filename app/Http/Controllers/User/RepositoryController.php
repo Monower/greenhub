@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\FileComment;
+use App\Models\RepositoryBookmark;
 use App\Models\RepositoryFile;
 use App\Models\RepositoryName;
 use Illuminate\Http\Request;
@@ -171,6 +172,22 @@ class RepositoryController extends Controller
         ]);
 
         Toastr::success('Comment added successfully');
+        return back();
+    }
+
+    public function add_bookmark($repository_id){
+        RepositoryBookmark::create([
+            'user_id'=>auth()->user()->id,
+            'repository_id'=>$repository_id,
+            'timestamps'=>now()
+        ]);
+
+        return back();
+    }
+
+    public function remove_bookmark($repository_id){
+        RepositoryBookmark::where(['user_id'=>auth()->user()->id, 'repository_id'=>$repository_id])->delete();
+
         return back();
     }
 }
