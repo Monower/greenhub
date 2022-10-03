@@ -8,7 +8,6 @@
             <h2>{{$repository->name}}</h2>
         </div>
         @php($user = \App\Models\RepositoryName::with('user')->find($repository->id))
-        {{-- {{dd($user->user->email)}} --}}
 
         @if (auth()->user()->id == $user_id)
           <div class="col-5"><button class="btn btn-sm btn-success" type="button" data-bs-toggle="modal" data-bs-target="#add-file">Add File</button></div>
@@ -18,6 +17,7 @@
         @endif
 
     </div>
+    <i class="bi bi-bookmarks"></i>
 </div>
 
 <div class="container">
@@ -28,7 +28,10 @@
           <tr>
             <th scope="col">SI</th>
             <th scope="col">File Name</th>
-            <th scope="col">Operation</th>
+            @if (auth()->user()->id == $user_id)
+              <th scope="col">Operation</th>
+            @endif
+            
           </tr>
         </thead>
         <tbody>
@@ -38,7 +41,13 @@
             <tr class="table-active">
                   <td>{{$si}}</td>
                   <td><a href="{{route('user.view-file', ['user_mail'=>$user->user->email, 'file_id'=>$file->id])}}">{{$file->name}}</a></td>
-                  <td><button class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#delete_file{{$file->id}}">Delete</button></td>
+                  <td>
+                    @if (auth()->user()->id == $user_id)
+                      <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#delete_file{{$file->id}}">Delete</button>
+                    @endif
+                    
+                  
+                  </td>
 
                   @php($si +=1)
 

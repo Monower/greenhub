@@ -65,9 +65,11 @@
                 <div class="col">
                     <h3>Repositories</h3>
                 </div>
-                <div class="col">
+                @if (auth()->user()->id == $id)
+                  <div class="col">
                     <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#add-repository">+</button>
-                </div>
+                  </div>
+                @endif
             </div>
 
             @if (isset($repository))
