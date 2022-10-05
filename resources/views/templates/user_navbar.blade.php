@@ -7,9 +7,9 @@
                 </form>
             </div>
 
-            <a class="btn btn-sm btn-primary" href="{{route('user.get_user_message')}}">Messages</a>
-            <a class="btn btn-sm btn-primary" href="{{route('user.user_bookmarks')}}">Bookmarks</a>
-            <a class="btn btn-sm btn-primary" href="{{route('user.get_notices')}}">Notices</a>
+            <a title="messages" class="btn btn-sm btn-primary" href="{{route('user.get_user_message')}}"><i class="bi bi-envelope-fill"></i></a>
+            <a title="bookmarks" class="btn btn-sm btn-primary" href="{{route('user.user_bookmarks')}}"><i class="bi bi-bookmark-fill"></i></a>
+            <a title="notices" class="btn btn-sm btn-primary" href="{{route('user.get_notices')}}"><i class="bi bi-bell-fill"></i></a>
             
             <ul class="navbar-nav me-auto">
                 <li class="nav-item dropdown">
