@@ -5,46 +5,34 @@
 
 <table class="table table-hover">
     <legend>
-        <h2>Bookmarks</h2>
+        <h2>Bookmarks <small><span class="badge bg-warning">{{\App\Models\RepositoryBookmark::with('repository')->where('user_id', auth()->user()->id)->count()}}</span></small></h2>
+        
     </legend>
     <thead>
       <tr>
         <th scope="col">SI</th>
         <th scope="col">Name of the repository</th>
-        <th scope="col">Operation</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="table-active">
-        <td>1</td>
-        <td>C programming</td>
-        <td><button class="btn btn-sm btn-dark">Unsave</button></td>
-      </tr>
-      <tr class="table-active">
-        <td>2</td>
-        <td>java programming</td>
-        <td><button class="btn btn-sm btn-dark">Unsave</button></td>
-      </tr>
-      <tr class="table-active">
-        <td>3</td>
-        <td>php programming</td>
-        <td><button class="btn btn-sm btn-dark">Unsave</button></td>
-      </tr>
-      <tr class="table-active">
-        <td>4</td>
-        <td>python programming</td>
-        <td><button class="btn btn-sm btn-dark">Unsave</button></td>
-      </tr>
-      <tr class="table-active">
-        <td>5</td>
-        <td>javascript programming</td>
-        <td><button class="btn btn-sm btn-dark">Unsave</button></td>
-      </tr>
-      <tr class="table-active">
-        <td>6</td>
-        <td>pearl programming</td>
-        <td><button class="btn btn-sm btn-dark">Unsave</button></td>
-      </tr>
+      @php
+          $bookmarks = \App\Models\RepositoryBookmark::with('repository')->where('user_id', auth()->user()->id)->get();
+      @endphp
+      @if (isset($bookmarks))
+        @php
+            $si =1;
+        @endphp
+          @foreach ($bookmarks as $key=>$value)
+              <tr class="table-active">
+                <td>{{$si}}</td>
+                <td> <a style="text-decoration: none" href="{{route('user.show-repository', ['repository_id'=>$value->repository_id, 'user_id'=>$value->repository->user_id ])}}">{{ $value->repository->name}}</a></td>
+                <td><a title="un-bookmark this repository" href="{{route('user.remove-bookmark', ['repository_id'=>$value->repository_id])}}" class="btn btn-sm"><i class="bi bi-bookmarks-fill"></i></a></td>
+              </tr>
+              @php
+                  $si+=1;
+              @endphp
+          @endforeach
+      @endif
     </tbody>
   </table>
   

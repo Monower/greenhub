@@ -12,4 +12,8 @@ class RepositoryBookmark extends Model
     protected $fillable=[
         'user_id', 'repository_id'
     ];
+
+    public function repository(){
+        return $this->belongsTo(RepositoryName::class, 'repository_id');
+    }
 }
